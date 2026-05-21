@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Djoumessi Magne Horlane-Jesica | Ingénieure Logicielle & Architecte Solutions</title>
+    <meta name="description" content="Portfolio professionnel de Djoumessi Magne Horlane-Jesica, Ingénieure Conceptrice et Développeuse d'Applications (Master 1 GL). Spécialiste des architectures Web (Laravel, Angular), Mobiles (Flutter) et certifiée Scrum Fundamentals.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-main: #0b0f19;
+            --bg-surface: #131a26;
+            --bg-surface-hover: #1c2636;
+            --color-text-primary: #f8fafc;
+            --color-text-secondary: #94a3b8;
+            --color-text-muted: #64748b;
+            --brand-primary: #0ea5e9;
+            --brand-primary-glow: rgba(14, 165, 233, 0.15);
+            --brand-success: #10b981;
+            --brand-success-glow: rgba(16, 185, 129, 0.15);
+            --border-color: #1e293b;
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+            --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--color-text-primary);
+            font-family: var(--font-sans);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Barre de Défilement Personnalisée */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-main);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--border-color);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--brand-primary);
+        }
+
+        /* Conteneurs Utilitaires */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Navigation Haute Performance */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(11, 15, 25, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            transition: var(--transition-smooth);
+        }
+
+        .navbar-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .nav-logo {
+            font-family: var(--font-mono);
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--color-text-primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-logo span {
+            color: var(--brand-primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            font-weight: 400;
+            transition: var(--transition-smooth);
+            position: relative;
+            padding: 6px 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--brand-primary);
+            transition: var(--transition-smooth);
+        }
+
+        .nav-links a:hover {
+            color: var(--color-text-primary);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Section Hero Pro (Engineering Terminal Concept) */
+        .hero {
+            padding: 160px 0 100px 0;
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 64px;
+            align-items: center;
+        }
+
+        @media (max-width: 968px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .hero-right {
+                display: none; /* Cache le terminal graphique sur mobile pour optimiser la lisibilité */
+            }
+        }
+
+        .hero-mono {
+            font-family: var(--font-mono);
+            color: var(--brand-primary);
+            font-size: 1rem;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            margin-bottom: 24px;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.1rem, 2vw, 1.5rem);
+            color: var(--color-text-secondary);
+            font-weight: 400;
+            margin-bottom: 32px;
+            max-width: 600px;
+        }
+
+        .hero-badges {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .badge-scrum {
+            background: var(--brand-success-glow);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            color: var(--brand-success);
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: var(--transition-smooth);
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: var(--brand-primary);
+            color: var(--bg-main);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(14, 165, 233, 0.25);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--color-text-primary);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--bg-surface);
+            border-color: var(--color-text-secondary);
+        }
+
+        /* Structure de Code / Fenêtre Terminal Graphique */
+        .terminal-window {
+            background-color: #070a12;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+
+        .terminal-header {
+            background-color: #0f1420;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .terminal-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        .dot-red { background: #ef4444; }
+        .dot-yellow { background: #f59e0b; }
+        .dot-green { background: #10b981; }
+
+        .terminal-title {
+            color: var(--color-text-muted);
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            margin-left: 8px;
+        }
+
+        .terminal-body {
+            padding: 24px;
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            color: var(--color-text-secondary);
+        }
+
+        .terminal-code-line {
+            margin-bottom: 6px;
+            display: block;
+        }
+
+        .code-keyword { color: #f472b6; }
+        .code-class { color: #38bdf8; }
+        .code-string { color: #34d399; }
+        .code-comment { color: #475569; font-style: italic; }
+
+        /* Sections Globales */
+        .section {
+            padding: 100px 0;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .section-header {
+            margin-bottom: 60px;
+        }
+
+        .section-num {
+            font-family: var(--font-mono);
+            color: var(--brand-primary);
+            font-size: 1rem;
+            margin-right: 8px;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 200px;
+            height: 1px;
+            background: var(--border-color);
+            margin-left: 24px;
+        }
+
+        /* Grille Technique (Compétences) */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+        }
+
+        .skill-card {
+            background-color: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 32px;
+            transition: var(--transition-smooth);
+        }
+
+        .skill-card:hover {
+            border-color: var(--brand-primary);
+            transform: translateY(-4px);
+        }
+
+        .skill-card-icon {
+            color: var(--brand-primary);
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .skill-card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .skill-tag {
+            background-color: var(--bg-main);
+            border: 1px solid var(--border-color);
+            color: var(--color-text-secondary);
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            padding: 4px 10px;
+            border-radius: 4px;
+        }
+
+        /* Grille de Projets d'Ingénierie */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 32px;
+        }
+
+        .project-card {
+            background-color: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+            transition: var(--transition-smooth);
+        }
+
+        .project-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(14, 165, 233, 0.4);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+        }
+
+        .project-content {
+            padding: 32px;
+        }
+
+        .project-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .project-folder {
+            color: var(--brand-primary);
+            font-size: 2rem;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 16px;
+            font-size: 1.2rem;
+        }
+
+        .project-links a {
+            color: var(--color-text-secondary);
+            transition: var(--transition-smooth);
+        }
+
+        .project-links a:hover {
+            color: var(--brand-primary);
+        }
+
+        .project-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--color-text-primary);
+        }
+
+        .project-desc {
+            color: var(--color-text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 24px;
+            line-height: 1.6;
+        }
+
+        .project-tech-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            list-style: none;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--color-text-muted);
+        }
+
+        /* Section Contact Centralisée */
+        .contact-box {
+            background-color: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 48px;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contact-box h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .contact-box p {
+            color: var(--color-text-secondary);
+            max-width: 500px;
+            margin: 0 auto 32px auto;
+        }
+
+        /* Footer Épuré */
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            color: var(--color-text-muted);
+        }
+
+        footer a {
+            color: var(--color-text-secondary);
+            text-decoration: none;
+        }
+        footer a:hover {
+            color: var(--brand-primary);
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="container navbar-inner">
+            <a href="#" class="nav-logo">
+                HJ<span>.Dev</span> 
+            </a>
+            <ul class="nav-links">
+                <li><a href="#about"> Profil</a></li>
+                <li><a href="#stack"> Technologies</a></li>
+                <li><a href="#engineering"> Ingénierie</a></li>
+                <li><a href="#connect"> Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero" id="about">
+        <div class="container hero-grid">
+            <div class="hero-left">
+                <span class="hero-mono"></span>
+                <h1 class="hero-title">Djoumessi Magne Horlane-Jesica</h1>
+                <h2 class="hero-subtitle" style="color: var(--color-text-secondary); margin-bottom: 16px;">
+                    Ingénieure Conceptrice & Développeuse d'Applications
+                </h2>
+                <p class="hero-subtitle" style="font-size: 1rem; color: var(--color-text-muted);">
+                    Actuellement en Master 1 Génie Logiciel. Spécialisée dans la conception d'architectures scalables, d'APIs sécurisées et de solutions cross-platform performantes.
+                </p>
+                
+                <div class="hero-badges">
+                    <div class="badge-scrum">
+                        <i class="fa-solid fa-certificate"></i> Scrum Fundamentals Certified (SFC™)
+                    </div>
+                </div>
+
+                <div class="btn-group">
+                    <a href="#engineering" class="btn btn-primary">Explorer les Projets</a>
+                    <a href="#connect" class="btn btn-secondary">Initialiser une connexion</a>
+                </div>
+            </div>
+
+            <div class="hero-right">
+                <div class="terminal-window">
+                    <div class="terminal-header">
+                        <div class="terminal-dot dot-red"></div>
+                        <div class="terminal-dot dot-yellow"></div>
+                        <div class="terminal-dot dot-green"></div>
+                        <span class="terminal-title">horlane_software_core.py</span>
+                    </div>
+                    <div class="terminal-body">
+                        <span class="terminal-code-line"><span class="code-comment"># Définition de l'instance ingénieure</span></span>
+                        <span class="terminal-code-line"><span class="code-keyword">class</span> <span class="code-class">SoftwareEngineer</span>:</span>
+                        <span class="terminal-code-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">def</span> <span class="code-class">__init__</span>(self):</span>
+                        <span class="terminal-code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.name = <span class="code-string">"Horlane-Jesica"</span></span>
+                        <span class="terminal-code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.academic_level = <span class="code-string">"Master 1 Génie Logiciel"</span></span>
+                        <span class="terminal-code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.agile_framework = <span class="code-string">"Scrum Framework"</span></span>
+                        <span class="terminal-code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.core_paradigm = <span class="code-string">"OOP & MVC Architecture"</span></span>
+                        <span class="terminal-code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.status = <span class="code-string">"Ready_for_production"</span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="stack">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title"><span class="section-num">01.</span> Compétences de R&D</h2>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="skill-card-icon"><i class="fa-solid fa-server"></i></div>
+                    <h3 class="skill-card-title">Architecture Backend & APIs</h3>
+                    <p class="project-desc" style="font-size:0.9rem;">Conception de systèmes serveur robustes, sécurisés et respectant les principes RESTful et MVC.</p>
+                    <div class="skill-tags">
+                        <span class="skill-tag">PHP</span>
+                        <span class="skill-tag">Laravel</span>
+                        <span class="skill-tag">Java</span>
+                        <span class="skill-tag">MySQL</span>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-card-icon"><i class="fa-solid fa-cubes"></i></div>
+                    <h3 class="skill-card-title">Écosystème Frontend & Mobile</h3>
+                    <p class="project-desc" style="font-size:0.9rem;">Interfaces utilisateurs dynamiques à haute réactivité et applications mobiles natives cross-platform.</p>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Flutter</span>
+                        <span class="skill-tag">Angular</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">Bootstrap</span>
+                        <span class="skill-tag">HTML5 / CSS3</span>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-card-icon"><i class="fa-solid fa-diagram-project"></i></div>
+                    <h3 class="skill-card-title">Gestion de Projet Agile & Git</h3>
+                    <p class="project-desc" style="font-size:0.9rem;">Planification de sprints, gestion des backlogs utilisateur et contrôle de version distribué.</p>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Scrum (SFC)</span>
+                        <span class="skill-tag">Git / GitHub</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="engineering">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title"><span class="section-num">02.</span> Réalisations Ingénierie</h2>
+            </div>
+            <div class="projects-grid">
+                
+                <div class="project-card">
+                    <div class="project-content">
+                        <div class="project-top">
+                            <div class="project-folder"><i class="fa-regular fa-folder-open"></i></div>
+                            <div class="project-links">
+                                <a href="#" title="Repository source"><i class="fa-brands fa-github"></i></a>
+                            </div>
+                        </div>
+                        <h3 class="project-title">Plateforme E-Commerce Spécifique</h3>
+                        <p class="project-desc">Conception d'une application de gestion commerciale sous architecture MVC stricte. Intégration de modules complexes de contrôle de stocks en temps réel et moteur d'extraction de factures/reçus au format PDF compilé à la volée.</p>
+                    </div>
+                    <div class="project-content" style="padding-top: 0;">
+                        <ul class="project-tech-list">
+                            <li>PHP</li>
+                            <li>Architecture MVC</li>
+                            <li>Bootstrap</li>
+                            <li>JavaScript</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-content">
+                        <div class="project-top">
+                            <div class="project-folder"><i class="fa-regular fa-folder-open"></i></div>
+                            <div class="project-links">
+                                <a href="#" title="Repository source"><i class="fa-brands fa-github"></i></a>
+                            </div>
+                        </div>
+                        <h3 class="project-title">Système Mobile de Gestion de Pointage</h3>
+                        <p class="project-desc">Développement d'une application mobile cross-platform dédiée au suivi des ressources humaines. Consommation d'APIs REST asynchrones pour le traitement des fiches d'absences, calculs de métriques de performance et génération de rapports statistiques.</p>
+                    </div>
+                    <div class="project-content" style="padding-top: 0;">
+                        <ul class="project-tech-list">
+                            <li>Flutter</li>
+                            <li>Laravel API</li>
+                            <li>Dart</li>
+                            <li>Relational DB</li>
+                        </ul>
+                    </div>
+                </div>
+
+               <div class="project-card">
+    <div class="project-content">
+        <div class="project-top">
+            <div class="project-folder"><i class="fa-regular fa-folder-open"></i></div>
+            <div class="project-links">
+                <a href="#" title="Lien technique"><i class="fa-solid fa-gears"></i></a>
+            </div>
+        </div>
+        
+    </div>
+    <div class="project-content" style="padding-top: 0;">
+        <ul class="project-tech-list">
+            <li>Angular (Web)</li>
+            <li>Flutter (Mobile)</li>
+            <li>Laravel & Java (REST API)</li>
+        </ul>
+    </div>
+</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="connect">
+        <div class="container">
+            <div class="contact-box">
+                <span class="hero-mono" style="margin-bottom: 8px;">03. What's Next?</span>
+                <h3>Entrer en Contact</h3>
+                <p>Je suis ouverte aux opportunités de développement de haut niveau, aux collaborations d'ingénierie et aux projets structurés sous méthodologie Agile.</p>
+                <div class="btn-group" style="justify-content: center;">
+                    <a href="mailto:djoujesica86@gmail.com" class="btn btn-primary"><i class="fa-solid fa-paper-plane"></i> Envoyer un Email</a>
+                    <a href="https://wa.me/237656876238" target="_blank" class="btn btn-secondary"><i class="fa-brands fa-whatsapp"></i> WhatsApp </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>Conçu & Développé par Djoumessi Magne Horlane-Jesica &copy; 2026. Code source libre d'accès.</p>
+    </footer>
+
+</body>
+</html>
+
