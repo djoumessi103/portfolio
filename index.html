@@ -145,7 +145,50 @@
             width: 100%;
         }
 
-        /* Section Hero Pro (Engineering Terminal Concept) */
+        /* Menu Mobile Interactif */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--color-text-secondary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+
+        .menu-toggle:hover {
+            color: var(--color-text-primary);
+        }
+
+        .nav-menu-mobile {
+            display: none;
+            position: fixed;
+            top: 70px;
+            left: 0;
+            width: 100%;
+            background: var(--bg-surface);
+            border-bottom: 1px solid var(--border-color);
+            padding: 24px;
+            z-index: 999;
+        }
+
+        .nav-menu-mobile ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .nav-menu-mobile a {
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            font-family: var(--font-mono);
+            font-size: 1rem;
+            display: block;
+            padding: 8px 0;
+        }
+
+        /* Section Hero Pro */
         .hero {
             padding: 160px 0 100px 0;
             min-height: 90vh;
@@ -158,16 +201,6 @@
             grid-template-columns: 1.2fr 0.8fr;
             gap: 64px;
             align-items: center;
-        }
-
-        @media (max-width: 968px) {
-            .hero-grid {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-            .hero-right {
-                display: none; /* Cache le terminal graphique sur mobile pour optimiser la lisibilité */
-            }
         }
 
         .hero-mono {
@@ -293,6 +326,8 @@
             font-family: var(--font-mono);
             font-size: 0.85rem;
             color: var(--color-text-secondary);
+            overflow-x: auto;
+            white-space: nowrap;
         }
 
         .terminal-code-line {
@@ -341,7 +376,7 @@
         /* Grille Technique (Compétences) */
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 24px;
         }
 
@@ -389,7 +424,7 @@
         /* Grille de Projets d'Ingénierie */
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 32px;
         }
 
@@ -506,6 +541,37 @@
         footer a:hover {
             color: var(--brand-primary);
         }
+
+        /* Responsive Breakpoints Classiques Média Queries */
+        @media (max-width: 968px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .hero-right {
+                max-width: 550px;
+                width: 100%;
+                margin: 0 auto;
+            }
+            .section-title::after {
+                width: 100px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .menu-toggle {
+                display: block;
+            }
+            .hero {
+                padding: 120px 0 60px 0;
+            }
+            .contact-box {
+                padding: 32px 16px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -521,18 +587,29 @@
                 <li><a href="#engineering"> Ingénierie</a></li>
                 <li><a href="#connect"> Contact</a></li>
             </ul>
+            <button class="menu-toggle" id="menu-btn" aria-label="Ouvrir le menu">
+                <i class="fa-solid fa-bars" id="menu-icon"></i>
+            </button>
+        </div>
+        <div class="nav-menu-mobile" id="mobile-menu">
+            <ul>
+                <li><a href="#about">Profil</a></li>
+                <li><a href="#stack">Technologies</a></li>
+                <li><a href="#engineering">Ingénierie</a></li>
+                <li><a href="#connect">Contact</a></li>
+            </ul>
         </div>
     </nav>
 
     <section class="hero" id="about">
         <div class="container hero-grid">
             <div class="hero-left">
-                <span class="hero-mono"></span>
+                <span class="hero-mono">⚡ Code ready for production</span>
                 <h1 class="hero-title">Djoumessi Magne Horlane-Jesica</h1>
-                <h2 class="hero-subtitle" style="color: var(--color-text-secondary); margin-bottom: 16px;">
+                <h2 class="hero-subtitle" style="color: var(--brand-primary); margin-bottom: 16px;">
                     Ingénieure Conceptrice & Développeuse d'Applications
                 </h2>
-                <p class="hero-subtitle" style="font-size: 1rem; color: var(--color-text-muted);">
+                <p class="hero-subtitle" style="font-size: 1rem; color: var(--color-text-secondary);">
                     Actuellement en Master 1 Génie Logiciel. Spécialisée dans la conception d'architectures scalables, d'APIs sécurisées et de solutions cross-platform performantes.
                 </p>
                 
@@ -664,24 +741,23 @@
                     </div>
                 </div>
 
-               <div class="project-card">
-    <div class="project-content">
-        <div class="project-top">
-            <div class="project-folder"><i class="fa-regular fa-folder-open"></i></div>
-            <div class="project-links">
-                <a href="#" title="Lien technique"><i class="fa-solid fa-gears"></i></a>
-            </div>
-        </div>
-        
-    </div>
-    <div class="project-content" style="padding-top: 0;">
-        <ul class="project-tech-list">
-            <li>Angular (Web)</li>
-            <li>Flutter (Mobile)</li>
-            <li>Laravel & Java (REST API)</li>
-        </ul>
-    </div>
-</div>
+                <div class="project-card">
+                    <div class="project-content">
+                        <div class="project-top">
+                            <div class="project-folder"><i class="fa-regular fa-folder-open"></i></div>
+                            <div class="project-links">
+                                <a href="#" title="Lien technique"><i class="fa-solid fa-gears"></i></a>
+                            </div>
+                        </div>
+                        <h3 class="project-title">Architecture Hybride Écosystème</h3>
+                        <p class="project-desc">Interconnexion et synchronisation de plateformes Web et d'applications mobiles cross-platform. Consommation d'APIs unifiées et sécurisées pour le traitement asynchrone des flux d'informations métiers.</p>
+                    </div>
+                    <div class="project-content" style="padding-top: 0;">
+                        <ul class="project-tech-list">
+                            <li>Angular (Web)</li>
+                            <li>Flutter (Mobile)</li>
+                            <li>Laravel & Java (REST API)</li>
+                        </ul>
                     </div>
                 </div>
 
@@ -707,6 +783,45 @@
         <p>Conçu & Développé par Djoumessi Magne Horlane-Jesica &copy; 2026. Code source libre d'accès.</p>
     </footer>
 
+    <script>
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+
+        // Bascule de l'affichage du menu mobile
+        menuBtn.addEventListener('click', () => {
+            if (mobileMenu.style.display === 'block') {
+                mobileMenu.style.display = 'none';
+                menuIcon.classList.remove('fa-xmark');
+                menuIcon.classList.add('fa-bars');
+            } else {
+                mobileMenu.style.display = 'block';
+                menuIcon.classList.remove('fa-bars');
+                menuIcon.classList.add('fa-xmark');
+            }
+        });
+
+        // Fermeture automatique lors du clic sur un lien mobile
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.style.display = 'none';
+                menuIcon.classList.remove('fa-xmark');
+                menuIcon.classList.add('fa-bars');
+            });
+        });
+
+        // Modification légère du fond de la navbar au défilement
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(11, 15, 25, 0.95)';
+                navbar.style.boxShadow = '0 10px 30px -10px rgba(2,12,27,0.7)';
+            } else {
+                navbar.style.background = 'rgba(11, 15, 25, 0.8)';
+                navbar.style.boxShadow = 'none';
+            }
+        });
+    </script>
 </body>
 </html>
-
