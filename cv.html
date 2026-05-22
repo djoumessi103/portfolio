@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CV — Djoumessi Magne Horlane-Jesica</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    /* ═══════════════════════════════════════════
+       VARIABLES & RESET
+    ═══════════════════════════════════════════ */
+    :root {
+      --navy:   #0b1f3a;
+      --navy2:  #112240;
+      --cyan:   #0ea5e9;
+      --cyan2:  #38bdf8;
+      --teal:   #0d9488;
+      --white:  #ffffff;
+      --light:  #f1f5f9;
+      --muted:  #64748b;
+      --text:   #1e293b;
+      --border: #e2e8f0;
+      --sidebar-w: 220px;
+    }
+
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+    html { font-size: 10pt; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      background: var(--light);
+      line-height: 1.55;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    /* ═══════════════════════════════════════════
+       BOUTON IMPRIMER (masqué à l'impression)
+    ═══════════════════════════════════════════ */
+    .print-bar {
+      background: var(--navy);
+      color: #fff;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 10px 24px; gap: 16px;
+      position: sticky; top: 0; z-index: 100;
+    }
+    .print-bar p {
+      font-size: 0.78rem; opacity: .75; font-family: 'JetBrains Mono', monospace;
+    }
+    .print-bar-btns { display: flex; gap: 10px; }
+    .btn-print {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--cyan); color: var(--navy);
+      font-size: 0.82rem; font-weight: 600;
+      padding: 7px 18px; border-radius: 6px; border: none;
+      cursor: pointer; text-decoration: none;
+      transition: opacity .2s;
+    }
+    .btn-print:hover { opacity: .88; }
+    .btn-back {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: transparent; color: #fff;
+      font-size: 0.82rem; font-weight: 500;
+      padding: 7px 18px; border-radius: 6px;
+      border: 1px solid rgba(255,255,255,.25); cursor: pointer;
+      text-decoration: none; transition: background .2s;
+    }
+    .btn-back:hover { background: rgba(255,255,255,.08); }
+
+    /* ═══════════════════════════════════════════
+       PAGE A4
+    ═══════════════════════════════════════════ */
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      margin: 20px auto;
+      background: var(--white);
+      box-shadow: 0 4px 40px rgba(0,0,0,.18);
+      display: grid;
+      grid-template-columns: var(--sidebar-w) 1fr;
+      grid-template-rows: auto 1fr;
+      overflow: hidden;
+    }
+
+    /* ═══════════════════════════════════════════
+       EN-TÊTE (pleine largeur)
+    ═══════════════════════════════════════════ */
+    .cv-header {
+      grid-column: 1 / -1;
+      background: var(--navy);
+      padding: 28px 32px 22px;
+      display: flex; align-items: center; gap: 24px;
+    }
+
+    .cv-avatar-circle {
+      width: 72px; height: 72px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--cyan) 0%, var(--teal) 100%);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.8rem; font-weight: 700; color: var(--white);
+      flex-shrink: 0; letter-spacing: -1px;
+    }
+
+    .cv-header-text { flex: 1; }
+
+    .cv-header-text h1 {
+      font-size: 1.65rem; font-weight: 700; color: var(--white);
+      letter-spacing: -.02em; line-height: 1.15; margin-bottom: 4px;
+    }
+
+    .cv-header-text .title-line {
+      font-size: .95rem; color: var(--cyan2); font-weight: 500;
+      margin-bottom: 10px;
+    }
+
+    .cv-header-badges {
+      display: flex; flex-wrap: wrap; gap: 8px;
+    }
+
+    .cv-badge {
+      display: inline-flex; align-items: center; gap: 5px;
+      background: rgba(14,165,233,.15);
+      border: 1px solid rgba(14,165,233,.35);
+      color: var(--cyan2);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .68rem; padding: 3px 10px; border-radius: 4px;
+    }
+    .cv-badge.green {
+      background: rgba(13,148,136,.15);
+      border-color: rgba(13,148,136,.35);
+      color: #5eead4;
+    }
+
+    .cv-header-contacts {
+      display: flex; flex-direction: column; gap: 5px; align-items: flex-end;
+    }
+    .cv-contact-item {
+      display: flex; align-items: center; gap: 6px;
+      font-size: .75rem; color: rgba(255,255,255,.7);
+    }
+    .cv-contact-item svg { width: 12px; height: 12px; fill: var(--cyan); flex-shrink: 0; }
+
+    /* ═══════════════════════════════════════════
+       SIDEBAR GAUCHE
+    ═══════════════════════════════════════════ */
+    .cv-sidebar {
+      background: #f8fafc;
+      border-right: 1px solid var(--border);
+      padding: 24px 18px;
+      display: flex; flex-direction: column; gap: 22px;
+    }
+
+    .sb-section-title {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .62rem; font-weight: 500;
+      color: var(--cyan); text-transform: uppercase;
+      letter-spacing: .12em; margin-bottom: 10px;
+      padding-bottom: 5px;
+      border-bottom: 2px solid var(--cyan);
+      display: inline-block;
+    }
+
+    /* Compétences barres */
+    .skill-row { margin-bottom: 9px; }
+    .skill-row-label {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 4px;
+    }
+    .skill-name { font-size: .78rem; font-weight: 500; color: var(--text); }
+    .skill-pct  { font-size: .65rem; color: var(--muted); font-family: 'JetBrains Mono', monospace; }
+    .skill-bar {
+      height: 5px; background: var(--border); border-radius: 3px; overflow: hidden;
+    }
+    .skill-fill {
+      height: 100%; border-radius: 3px;
+      background: linear-gradient(90deg, var(--cyan), var(--teal));
+    }
+
+    /* Tags simples */
+    .tag-cloud { display: flex; flex-wrap: wrap; gap: 5px; }
+    .stag {
+      font-size: .67rem; font-family: 'JetBrains Mono', monospace;
+      background: #e0f2fe; color: #0369a1;
+      border: 1px solid #bae6fd; padding: 2px 7px; border-radius: 3px;
+    }
+
+    /* Langues */
+    .lang-row {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 8px; font-size: .78rem;
+    }
+    .lang-name { font-weight: 500; color: var(--text); }
+    .lang-level {
+      font-size: .65rem; color: var(--white);
+      background: var(--navy); padding: 2px 8px; border-radius: 3px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .lang-level.b { background: var(--cyan); color: var(--navy); }
+
+    /* Certif */
+    .certif-card {
+      background: linear-gradient(135deg, #0ea5e920, #0d948820);
+      border: 1px solid #bae6fd; border-radius: 6px;
+      padding: 10px 12px;
+    }
+    .certif-name { font-size: .78rem; font-weight: 600; color: var(--navy); margin-bottom: 3px; }
+    .certif-org  { font-size: .68rem; color: var(--muted); }
+    .certif-year { font-family: 'JetBrains Mono', monospace; font-size: .65rem; color: var(--cyan); }
+
+    /* Soft skills */
+    .soft-item {
+      display: flex; align-items: flex-start; gap: 7px;
+      font-size: .75rem; margin-bottom: 6px; color: var(--text);
+    }
+    .soft-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--cyan); flex-shrink: 0; margin-top: 4px;
+    }
+
+    /* ═══════════════════════════════════════════
+       CONTENU PRINCIPAL
+    ═══════════════════════════════════════════ */
+    .cv-main {
+      padding: 24px 28px;
+      display: flex; flex-direction: column; gap: 20px;
+    }
+
+    .section-title-main {
+      font-size: .75rem; font-weight: 700; color: var(--navy);
+      text-transform: uppercase; letter-spacing: .1em;
+      padding-bottom: 6px; margin-bottom: 12px;
+      border-bottom: 2px solid var(--navy);
+      display: flex; align-items: center; gap: 8px;
+    }
+    .section-title-main::after {
+      content: ''; flex: 1; height: 2px;
+      background: linear-gradient(90deg, var(--cyan), transparent);
+    }
+
+    /* Profil */
+    .profile-text {
+      font-size: .82rem; color: var(--muted); line-height: 1.65;
+      border-left: 3px solid var(--cyan);
+      padding-left: 12px;
+    }
+
+    /* Timeline (Formation & Expérience) */
+    .timeline { display: flex; flex-direction: column; gap: 14px; }
+
+    .tl-item { display: grid; grid-template-columns: 9px 1fr; gap: 0 10px; }
+
+    .tl-dot-col {
+      display: flex; flex-direction: column; align-items: center; padding-top: 4px;
+    }
+    .tl-dot {
+      width: 9px; height: 9px; border-radius: 50%;
+      background: var(--cyan); flex-shrink: 0; border: 2px solid var(--white);
+      box-shadow: 0 0 0 2px var(--cyan);
+    }
+    .tl-line {
+      flex: 1; width: 2px; background: var(--border); margin-top: 3px;
+    }
+
+    .tl-body {}
+    .tl-head {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      margin-bottom: 2px;
+    }
+    .tl-title { font-size: .82rem; font-weight: 600; color: var(--text); line-height: 1.3; }
+    .tl-date  {
+      font-family: 'JetBrains Mono', monospace; font-size: .65rem;
+      color: var(--cyan); white-space: nowrap; margin-left: 8px; margin-top: 1px;
+    }
+    .tl-org { font-size: .73rem; color: var(--muted); margin-bottom: 5px; }
+
+    .tl-bullets { list-style: none; }
+    .tl-bullets li {
+      font-size: .75rem; color: var(--muted); line-height: 1.55;
+      padding-left: 12px; position: relative; margin-bottom: 3px;
+    }
+    .tl-bullets li::before {
+      content: '▸'; position: absolute; left: 0; color: var(--cyan); font-size: .7rem;
+    }
+
+    .tl-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; }
+    .tl-tag {
+      font-family: 'JetBrains Mono', monospace; font-size: .62rem;
+      color: #0369a1; background: #e0f2fe; border: 1px solid #bae6fd;
+      padding: 1px 6px; border-radius: 3px;
+    }
+
+    /* ═══════════════════════════════════════════
+       IMPRESSION (PDF)
+    ═══════════════════════════════════════════ */
+    @media print {
+      @page { size: A4; margin: 0; }
+
+      html, body { background: white; font-size: 9.5pt; }
+
+      .print-bar { display: none !important; }
+
+      .page {
+        width: 210mm; min-height: 297mm;
+        margin: 0; box-shadow: none;
+        page-break-after: avoid;
+      }
+
+      .skill-fill { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+      .cv-header  { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+      .certif-card { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+      .stag, .tl-tag { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+    }
+
+    @media (max-width: 768px) {
+      .page { width: 100%; grid-template-columns: 1fr; box-shadow: none; }
+      .cv-header { flex-direction: column; align-items: flex-start; gap: 14px; }
+      .cv-header-contacts { align-items: flex-start; }
+      .cv-sidebar { border-right: none; border-bottom: 1px solid var(--border); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- BARRE ACTIONS -->
+<div class="print-bar">
+  <p>// Pour générer le PDF : cliquer sur "Imprimer" → choisir "Enregistrer en PDF" → sauvegarder comme <strong>cv.pdf</strong></p>
+  <div class="print-bar-btns">
+    <a href="index_v2.html" class="btn-back">← Retour au portfolio</a>
+    <button class="btn-print" onclick="window.print()">⬇ Imprimer / Enregistrer PDF</button>
+  </div>
+</div>
+
+<!-- PAGE A4 -->
+<div class="page">
+
+  <!-- EN-TÊTE -->
+  <header class="cv-header">
+    <div class="cv-avatar-circle">HJ</div>
+    <div class="cv-header-text">
+      <h1>Djoumessi Magne Horlane-Jesica</h1>
+      <p class="title-line">Ingénieure Conceptrice &amp; Développeuse d'Applications</p>
+      <div class="cv-header-badges">
+        <span class="cv-badge green">✦ Master 1 Génie Logiciel</span>
+        <span class="cv-badge">⬡ Scrum Fundamentals Certified — SFC™</span>
+        <span class="cv-badge">✦ Full-Stack · Web · Mobile</span>
+      </div>
+    </div>
+    <div class="cv-header-contacts">
+      <div class="cv-contact-item">
+        <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        djoujesica86@gmail.com
+      </div>
+      <div class="cv-contact-item">
+        <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+        +237 656 876 238
+      </div>
+      <div class="cv-contact-item">
+        <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+        Cameroun
+      </div>
+      <div class="cv-contact-item">
+        <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+        github.com/[votre-github]
+      </div>
+    </div>
+  </header>
+
+  <!-- SIDEBAR -->
+  <aside class="cv-sidebar">
+
+    <!-- Compétences techniques -->
+    <div>
+      <p class="sb-section-title">Compétences</p>
+
+      <div class="skill-row">
+        <div class="skill-row-label"><span class="skill-name">Laravel / PHP</span><span class="skill-pct">92%</span></div>
+        <div class="skill-bar"><div class="skill-fill" style="width:92%"></div></div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-row-label"><span class="skill-name">Flutter / Dart</span><span class="skill-pct">85%</span></div>
+        <div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-row-label"><span class="skill-name">Angular</span><span class="skill-pct">80%</span></div>
+        <div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-row-label"><span class="skill-name">Java</span><span class="skill-pct">75%</span></div>
+        <div class="skill-bar"><div class="skill-fill" style="width:75%"></div></div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-row-label"><span class="skill-name">MySQL</span><span class="skill-pct">88%</span></div>
+        <div class="skill-bar"><div class="skill-fill" style="width:88%"></div></div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-row-label"><span class="skill-name">JavaScript / HTML / CSS</span><span class="skill-pct">90%</span></div>
+        <div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div>
+      </div>
+    </div>
+
+    <!-- Outils -->
+    <div>
+      <p class="sb-section-title">Outils &amp; Méthodes</p>
+      <div class="tag-cloud">
+        <span class="stag">Git / GitHub</span>
+        <span class="stag">REST API</span>
+        <span class="stag">MVC</span>
+        <span class="stag">Scrum</span>
+        <span class="stag">Bootstrap</span>
+        <span class="stag">VS Code</span>
+        <span class="stag">UML</span>
+        <span class="stag">Merise</span>
+      </div>
+    </div>
+
+    <!-- Certification -->
+    <div>
+      <p class="sb-section-title">Certification</p>
+      <div class="certif-card">
+        <p class="certif-name">Scrum Fundamentals Certified</p>
+        <p class="certif-org">SCRUMstudy™ — SFC™</p>
+        <p class="certif-year">2025</p>
+      </div>
+    </div>
+
+    <!-- Langues -->
+    <div>
+      <p class="sb-section-title">Langues</p>
+      <div class="lang-row">
+        <span class="lang-name">Français</span>
+        <span class="lang-level b">Natif</span>
+      </div>
+      <div class="lang-row">
+        <span class="lang-name">Anglais</span>
+        <span class="lang-level">Professionnel</span>
+      </div>
+    </div>
+
+    <!-- Soft Skills -->
+    <div>
+      <p class="sb-section-title">Aptitudes</p>
+      <div class="soft-item"><div class="soft-dot"></div>Autonomie &amp; rigueur</div>
+      <div class="soft-item"><div class="soft-dot"></div>Travail en équipe Agile</div>
+      <div class="soft-item"><div class="soft-dot"></div>Résolution de problèmes</div>
+      <div class="soft-item"><div class="soft-dot"></div>Communication technique</div>
+      <div class="soft-item"><div class="soft-dot"></div>Veille technologique</div>
+    </div>
+
+  </aside>
+
+  <!-- CONTENU PRINCIPAL -->
+  <main class="cv-main">
+
+    <!-- Profil -->
+    <section>
+      <h2 class="section-title-main">Profil Professionnel</h2>
+      <p class="profile-text">
+        Ingénieure logicielle passionnée, actuellement en Master 1 Génie Logiciel, spécialisée dans la conception
+        d'architectures web scalables (Laravel, Angular), d'APIs REST sécurisées et d'applications mobiles cross-platform (Flutter).
+        Certifiée Scrum Fundamentals, je combine rigueur technique et méthodologie Agile pour livrer des solutions robustes,
+        maintenables et orientées performance. À la recherche d'opportunités de haut niveau pour contribuer à des projets
+        d'ingénierie structurés et innovants.
+      </p>
+    </section>
+
+    <!-- Formation -->
+    <section>
+      <h2 class="section-title-main">Formation</h2>
+      <div class="timeline">
+
+        <div class="tl-item">
+          <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+          <div class="tl-body">
+            <div class="tl-head">
+              <span class="tl-title">Master 1 — Génie Logiciel</span>
+              <span class="tl-date">2025 – 2026</span>
+            </div>
+            <p class="tl-org">Institut Superieur Sa'a djamen · Cameroun</p>
+            <ul class="tl-bullets">
+              <li>Architecture logicielle avancée, conception de systèmes distribués</li>
+              <li>Gestion de projets Agile/Scrum, qualité logicielle et tests</li>
+              <li>APIs REST, microservices et intégration mobile/web</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+          <div class="tl-body">
+            <div class="tl-head">
+              <span class="tl-title">Licence — Informatique / Génie Logiciel</span>
+              <span class="tl-date">2022 – 2025</span>
+            </div>
+            <p class="tl-org">Institut Superieur Sa'a djamen · Cameroun</p>
+            <ul class="tl-bullets">
+              <li>Algorithmique, programmation orientée objet (Java, PHP)</li>
+              <li>Bases de données relationnelles, modélisation UML &amp; Merise</li>
+              <li>Développement web full-stack, réseaux et systèmes</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Expérience / Projets -->
+    <section>
+      <h2 class="section-title-main">Réalisations &amp; Expérience</h2>
+      <div class="timeline">
+
+        <div class="tl-item">
+          <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+          <div class="tl-body">
+            <div class="tl-head">
+              <span class="tl-title">Développeuse Full-Stack — Plateforme E-Commerce</span>
+              <span class="tl-date">2024 – 2025</span>
+            </div>
+            <p class="tl-org"></p>
+            <ul class="tl-bullets">
+              <li>Conception d'une application de gestion commerciale sous architecture MVC stricte</li>
+              <li>Module de contrôle de stocks en temps réel avec alertes automatiques</li>
+              <li>Moteur de génération de factures et reçus PDF compilés à la volée</li>
+            </ul>
+            <div class="tl-tags">
+              <span class="tl-tag">PHP</span><span class="tl-tag">MVC</span>
+              <span class="tl-tag">Bootstrap</span><span class="tl-tag">JavaScript</span><span class="tl-tag">MySQL</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+          <div class="tl-body">
+            <div class="tl-head">
+              <span class="tl-title">Développeuse Mobile — Système de Gestion de Pointage</span>
+              <span class="tl-date">2024</span>
+            </div>
+            <p class="tl-org"></p>
+            <ul class="tl-bullets">
+              <li>Application cross-platform de suivi RH déployée sur iOS &amp; Android</li>
+              <li>Consommation d'APIs REST asynchrones pour fiches d'absences et métriques</li>
+              <li>Génération de rapports statistiques dynamiques intégrés à l'application</li>
+            </ul>
+            <div class="tl-tags">
+              <span class="tl-tag">Flutter</span><span class="tl-tag">Dart</span>
+              <span class="tl-tag">Laravel API</span><span class="tl-tag">MySQL</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-dot-col"><div class="tl-dot"></div></div>
+          <div class="tl-body">
+            <div class="tl-head">
+              <span class="tl-title">Architecte Solutions — Écosystème Hybride Web &amp; Mobile</span>
+              <span class="tl-date">2025</span>
+            </div>
+            <p class="tl-org">Projet de recherche appliquée</p>
+            <ul class="tl-bullets">
+              <li>Interconnexion et synchronisation d'une plateforme web Angular et d'une app Flutter</li>
+              <li>Conception d'APIs unifiées et sécurisées (Laravel + Java) pour flux métiers asynchrones</li>
+              <li>Implémentation de l'authentification JWT et gestion des droits d'accès</li>
+            </ul>
+            <div class="tl-tags">
+              <span class="tl-tag">Angular</span><span class="tl-tag">Flutter</span>
+              <span class="tl-tag">Laravel</span><span class="tl-tag">Java</span><span class="tl-tag">JWT</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+</div>
+
+</body>
+</html>
