@@ -263,7 +263,7 @@
       flex: 1; width: 2px; background: var(--border); margin-top: 3px;
     }
 
-    .tl-body {}
+   
     .tl-head {
       display: flex; justify-content: space-between; align-items: flex-start;
       margin-bottom: 2px;
@@ -294,24 +294,37 @@
     /* ═══════════════════════════════════════════
        IMPRESSION (PDF)
     ═══════════════════════════════════════════ */
-    @media print {
-      @page { size: A4; margin: 0; }
-
-      html, body { background: white; font-size: 9.5pt; }
-
-      .print-bar { display: none !important; }
-
-      .page {
-        width: 210mm; min-height: 297mm;
-        margin: 0; box-shadow: none;
-        page-break-after: avoid;
-      }
-
-      .skill-fill { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
-      .cv-header  { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
-      .certif-card { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
-      .stag, .tl-tag { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+   @media print {
+    @page { 
+        size: A4; 
+        margin: 10mm; /* Ajout d'une marge de sécurité pour l'imprimante */
     }
+
+    html, body { 
+        background: white !important; 
+        font-size: 9.5pt; 
+    }
+
+    /* Masquage des éléments inutiles */
+    .print-bar, .no-print { 
+        display: none !important; 
+    }
+
+    /* Structure de la page */
+    .page {
+        width: 100% !important; 
+        min-height: auto !important;
+        margin: 0 !important; 
+        box-shadow: none !important;
+        page-break-after: always; /* S'assure que chaque page est propre */
+    }
+
+    /* Force l'affichage des couleurs et fonds */
+    body, .skill-fill, .cv-header, .certif-card, .stag, .tl-tag {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+}
 
     @media (max-width: 768px) {
       .page { width: 100%; grid-template-columns: 1fr; box-shadow: none; }
@@ -424,7 +437,24 @@
         <p class="certif-year">2025</p>
       </div>
     </div>
-
+<div class="tl-item">
+  <div class="tl-dot-col"><div class="tl-dot"></div></div>
+  <div class="tl-body">
+    <div class="tl-head">
+      <span class="tl-title">Oracle Database SQL Certified Associate</span>
+      <span class="tl-date">2026</span>
+    </div>
+    <p class="tl-org">Certification Professionnelle</p>
+    <ul class="tl-bullets">
+      <li>Maîtrise avancée des requêtes SQL et manipulation de bases de données relationnelles.</li>
+      <li>Optimisation des performances et modélisation de schémas de données complexes.</li>
+    </ul>
+    <div class="tl-tags">
+      <span class="tl-tag">Oracle SQL</span>
+      <span class="tl-tag">Database Management</span>
+    </div>
+  </div>
+</div>
     <!-- Langues -->
     <div>
       <p class="sb-section-title">Langues</p>
