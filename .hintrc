@@ -19,7 +19,9 @@
       "default",
       {
         "ignore": [
-          "min-height: auto"
+          "min-height: auto",
+          "-moz-transform",
+          "-moz-transform-origin"
         ]
       }
     ]
